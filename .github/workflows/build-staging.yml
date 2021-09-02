@@ -25,9 +25,9 @@ jobs:
           git config user.email "github-actions@github.com"
           git pull -q
           git stash -u
-          git checkout -B build-staging
+          git checkout -B build-staging --
           git rm -rf .
           git stash pop
           git add .
           git diff-index --quiet HEAD || git commit -m 'Build'
-          git push origin build-staging
+          git push -f origin build-staging
