@@ -16,8 +16,7 @@ jobs:
           GRAPHQL_URI: ${{ env.GRAPHQL_URI }}
           GRAPHQL_SUBSCRIPTION_URI: ${{ env.GRAPHQL_SUBSCRIPTION_URI }}
         run: |
-          echo $(ls)
-          yarn
+          yarn install
           yarn build
           rm -rf node_modules
           git rm -rf .
@@ -26,7 +25,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git pull -q
           git stash -u
-          git checkout build-staging --
+          git checkout -B build-staging
           git rm -rf .
           git stash pop
           git add .
