@@ -13,8 +13,8 @@ jobs:
       - name: Build and push
         env:
           CI: false
-          GRAPHQL_URI: ${{ env.GRAPHQL_URI }}
-          GRAPHQL_SUBSCRIPTION_URI: ${{ env.GRAPHQL_SUBSCRIPTION_URI }}
+          GRAPHQL_URI: "https://api.mainnet.galoy.io/graphql"
+          GRAPHQL_SUBSCRIPTION_URI: "wss://api.mainnet.galoy.io/graphql"
         run: |
           yarn install
           yarn build
@@ -25,9 +25,9 @@ jobs:
           git config user.email "github-actions@github.com"
           git pull -q
           git stash -u
-          git checkout -B build
+          git checkout -B build --
           git rm -rf .
           git stash pop
           git add .
           git diff-index --quiet HEAD || git commit -m 'Build'
-          git push origin build
+          git push -f origin build
