@@ -8,13 +8,14 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    environment: "main-mainnet"
     steps:
       - uses: actions/checkout@v2
       - name: Build and push
         env:
           CI: false
-          GRAPHQL_URI: "https://api.mainnet.galoy.io/graphql"
-          GRAPHQL_SUBSCRIPTION_URI: "wss://api.mainnet.galoy.io/graphql"
+          GRAPHQL_URI: ${{ secrets.GRAPHQL_URI }}
+          GRAPHQL_SUBSCRIPTION_URI: ${{ secrets.GRAPHQL_SUBSCRIPTION_URI }}
         run: |
           yarn install
           yarn build
