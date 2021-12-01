@@ -55,7 +55,7 @@ const PrintQR = ({ username }: { username: string }) => {
                   <h3>Pay {username}</h3>
                   <QRCode
                     ecLevel="H"
-                    value={`https://pay.bitcoinbeach.app/${username}`}
+                    value={`https://pay.bitcoinjungle.app/${username}`}
                     size={300}
                     // TODO : Add Our Logo
                     // logoImage={process.env.PUBLIC_URL + "/BBQRLogo.png"}
