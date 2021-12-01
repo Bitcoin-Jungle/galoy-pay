@@ -5,7 +5,7 @@ if (!GRAPHQL_URI || !GRAPHQL_SUBSCRIPTION_URI) {
   let hostParts = window.location.host.split(".")
   if (hostParts.length <= 3) {
     // throw new Error("Missing env variables")
-    hostParts = "pay.mainnet.galoy.io".split(".")
+    hostParts = "pay.mainnet.bitcoinjungle.app".split(".")
   }
   hostParts[0] = "api"
   GRAPHQL_URI = `https://${hostParts.join(".")}/graphql`

@@ -29,7 +29,7 @@ function Home() {
       <br />
       <Row>
         <Col>
-          <h2>Connect to the Bitcoin Beach Lightning Node</h2>
+          <h2>Open a Connection to the Bitcoin Jungle Lightning Node</h2>
           <br />
           <Jumbotron>
             <Container>
@@ -55,7 +55,7 @@ function Home() {
                             "Loading..."
                           ) : (
                             <a href={nodeUrl + `${data.globals.nodesIds[0]}`}>
-                              Connect the Bitcoin Beach Lightning node
+                              Connect the Bitcoin Jungle Lightning node
                             </a>
                           )}
                         </ListGroup.Item>

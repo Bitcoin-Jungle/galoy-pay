@@ -23,8 +23,9 @@ const QRContainer = forwardRef((props: { username: string }, ref) => {
                     ecLevel="H"
                     value={`https://ln.bitcoinbeach.com/${props.username}`}
                     size={800}
-                    logoImage={process.env.PUBLIC_URL + "/BBQRLogo.png"}
-                    logoWidth={250}
+                    // TODO: Add Our Wallet
+                    // logoImage={process.env.PUBLIC_URL + "/BBQRLogo.png"}
+                    // logoWidth={250}
                   />
                 </Card.Text>
               </Card.Body>
@@ -56,8 +57,9 @@ const PrintQR = ({ username }: { username: string }) => {
                     ecLevel="H"
                     value={`https://ln.bitcoinbeach.com/${username}`}
                     size={300}
-                    logoImage={process.env.PUBLIC_URL + "/BBQRLogo.png"}
-                    logoWidth={100}
+                    // TODO : Add Our Logo
+                    // logoImage={process.env.PUBLIC_URL + "/BBQRLogo.png"}
+                    // logoWidth={100}
                   />
                 </Card.Text>
               </Card.Body>
