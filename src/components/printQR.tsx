@@ -21,7 +21,7 @@ const QRContainer = forwardRef((props: { username: string }, ref) => {
                   <h1>Pay {props.username}</h1>
                   <QRCode
                     ecLevel="H"
-                    value={`https://ln.bitcoinbeach.com/${props.username}`}
+                    value={`https://pay.bitcoinjungle.app/${props.username}`}
                     size={800}
                     // TODO: Add Our Wallet
                     // logoImage={process.env.PUBLIC_URL + "/BBQRLogo.png"}
@@ -55,7 +55,7 @@ const PrintQR = ({ username }: { username: string }) => {
                   <h3>Pay {username}</h3>
                   <QRCode
                     ecLevel="H"
-                    value={`https://ln.bitcoinbeach.com/${username}`}
+                    value={`https://pay.bitcoinbeach.app/${username}`}
                     size={300}
                     // TODO : Add Our Logo
                     // logoImage={process.env.PUBLIC_URL + "/BBQRLogo.png"}
