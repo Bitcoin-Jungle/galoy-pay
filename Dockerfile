@@ -6,6 +6,10 @@ RUN yarn install --frozen-lockfile
 
 COPY . .
 
+ENV GRAPHQL_URI="https://api.mainnet.bitcoinjungle.app/graphql"
+
+ENV GRAPHQL_SUBSCRIPTION_URI="wss://api.mainnet.bitcoinjungle.app/graphql"
+
 RUN yarn build
 
 FROM nginx:alpine
