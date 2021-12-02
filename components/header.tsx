@@ -7,7 +7,7 @@ function Header() {
     <Navbar bg="dark">
       <Container>
         <Navbar.Brand href="https://chirripo.io">
-          {/*<Image src={process.env.PUBLIC_URL + "/BBLogo.png"} rounded />{" "}*/}
+          {/*<Image src={"/BBLogo.png"} rounded />{" "}*/}
           <span style={{color: "white"}}>Bitcoin Jungle</span>
         </Navbar.Brand>
       </Container>
