@@ -3,8 +3,17 @@
     "apps": [],
     "details": [
       {
-        "appID": "AYPCPV46WW.io.galoy.bitcoinbeach",
-        "paths": ["*"]
+        "appIDs": [ "7HMDAT3267.io.chirripo.app" ],
+        "components": [
+          {
+            "/": "/*",
+            "comment": "Matches any URL"
+          }
+        ]
+      },
+      {
+        "appID": "7HMDAT3267.io.chirripo.app",
+        "paths": [ "*" ]
       }
     ]
   }
