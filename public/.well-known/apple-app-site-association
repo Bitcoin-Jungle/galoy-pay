@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appIDs": [ "7HMDAT3267.io.chirripo.app" ],
+        "appIDs": [ "7HMDAT3267.app.bitcoinjungle.mobile" ],
         "components": [
           {
             "/": "/*",
@@ -12,7 +12,7 @@
         ]
       },
       {
-        "appID": "7HMDAT3267.io.chirripo.app",
+        "appID": "7HMDAT3267.app.bitcoinjungle.mobile",
         "paths": [ "*" ]
       }
     ]
