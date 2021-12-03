@@ -63,7 +63,7 @@ export default function ({
                       ecLevel="H"
                       value={qrType === "lnurl" ? lnurl : webURL}
                       size={800}
-                      logoImage="/BBQRLogo.png"
+                      // logoImage="/BBQRLogo.png"
                       logoWidth={250}
                     />
                   </Card.Text>
@@ -87,7 +87,7 @@ export default function ({
                     ecLevel="H"
                     value={qrType === "lnurl" ? lnurl : webURL}
                     size={300}
-                    logoImage="/BBQRLogo.png"
+                    // logoImage="/BBQRLogo.png"
                     logoWidth={100}
                   />
                 </Card.Text>

@@ -24,25 +24,9 @@ export default function Layout({
         <meta name="theme-color" content="#000000" />
         <meta
           name="description"
-          content="Bitcoin Beach official lightning network node"
+          content="Bitcoin Jungle official lightning network node"
         />
-
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=UA-181044262-1"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-181044262-1');
-    `,
-          }}
-        />
-        <title>BitcoinBeach Lightning Node</title>
+        <title>BitcoinJungle Lightning Node</title>
       </Head>
       <GraphQLProvider>
         <Header />

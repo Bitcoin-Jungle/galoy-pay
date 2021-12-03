@@ -11,8 +11,6 @@ FROM node:alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-ENV GRAPHQL_URI="https://api.mainnet.bitcoinjungle.app/graphql"
-ENV GRAPHQL_SUBSCRIPTION_URI="wss://api.mainnet.bitcoinjungle.app/graphql"
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
