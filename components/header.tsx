@@ -6,9 +6,8 @@ function Header() {
   return (
     <Navbar bg="dark">
       <Container>
-        <Navbar.Brand href="https://chirripo.io">
-          {/*<Image src={"/BBLogo.png"} rounded />{" "}*/}
-          <span style={{color: "white"}}>Bitcoin Jungle</span>
+        <Navbar.Brand href="https://bitcoinjungle.app">
+          <Image src={"/BJLogo.png"} height={50} rounded />{" "}
         </Navbar.Brand>
       </Container>
     </Navbar>

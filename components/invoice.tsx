@@ -78,9 +78,8 @@ export default function Invoice({
             <QRCode
               value={`${paymentRequest}`}
               size={320}
-              // TODO: Add Our Logo
-              // logoImage={"/BBQRLogo.png"}
-              // logoWidth={100}
+              logoImage={"/BJQRLogo.png"}
+              logoWidth={100}
             />
           </div>
         </OverlayTrigger>
