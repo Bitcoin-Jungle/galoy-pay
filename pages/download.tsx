@@ -11,10 +11,10 @@ function DownloadApp() {
   const os = getOS()
 
   if (os === "android") {
-    window.location.replace("https://play.google.com/store/apps/details?id=com.galoyapp")
+    window.location.replace("https://play.google.com/store/apps/details?id=app.bitcoinjungle.mobile")
   } else if (os === "ios") {
     window.location.replace(
-      "itms-apps://itunes.apple.com/app/bitcoin-beach-wallet/id1531383905",
+      "itms-apps://itunes.apple.com/app/bitcoin-jungle/id1598646780",
     )
   }
 
