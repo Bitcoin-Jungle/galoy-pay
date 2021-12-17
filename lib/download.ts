@@ -22,4 +22,4 @@ export const getOS = () => {
 
 export const playStoreLink = "https://play.google.com/store/apps/details?id=app.bitcoinjungle.mobile"
 export const appStoreLink = "https://apps.apple.com/us/app/bitcoin-jungle/id1600313979"
-export const apkLink = "https://storage.googleapis.com/bitcoin-beach-wallet/latest.apk"
+export const apkLink = "https://storage.googleapis.com/bitcoin-jungle-wallet/latest.apk"
