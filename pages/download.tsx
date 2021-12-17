@@ -14,7 +14,7 @@ function DownloadApp() {
     window.location.replace("https://play.google.com/store/apps/details?id=app.bitcoinjungle.mobile")
   } else if (os === "ios") {
     window.location.replace(
-      "itms-apps://itunes.apple.com/app/bitcoin-jungle/id1598646780",
+      "itms-apps://itunes.apple.com/app/bitcoin-jungle/id1600313979",
     )
   }
 
