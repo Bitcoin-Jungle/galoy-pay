@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
 import Container from "react-bootstrap/Container"
+import Button from "react-bootstrap/Button"
 import Image from "react-bootstrap/Image"
 import { gql, useQuery } from "@apollo/client"
 
@@ -80,6 +81,12 @@ export default function Receive() {
                   </a>
                 </div>
               )}
+              <Button 
+                style={{ marginTop: 10 }}
+                href={"/" + username + "/print"}
+              >
+                Print QR Code
+              </Button>
             </Card.Body>
             <Card.Footer className="text-muted">
               Powered by <Card.Link href="https://galoy.io">Galoy </Card.Link>
