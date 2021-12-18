@@ -62,7 +62,7 @@ export default function ReceiveAmount({
   return (
     <>
       <div className="amount-input">
-        <div className="currency-label">{currency === "SATS" ? "sats" : "$"}</div>
+        <div className="currency-label">{currency === "SATS" ? "sats" : "₡"}</div>
         <div className="input-container">
           <FormattedInput
             key={currency}
