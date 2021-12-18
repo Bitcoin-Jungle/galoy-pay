@@ -7,13 +7,13 @@ import FormattedInput from "./formatted-input"
 import useSatPrice from "../lib/use-sat-price"
 import GenerateInvoice from "./generate-invoice"
 
-const usdFormatter = new Intl.NumberFormat("en-US", {
+const usdFormatter = new Intl.NumberFormat("es-CR", {
   style: "currency",
-  currency: "USD",
+  currency: "CRC",
   maximumFractionDigits: 2,
 })
 
-const satsFormatter = new Intl.NumberFormat("en-US", {
+const satsFormatter = new Intl.NumberFormat("es-CR", {
   maximumFractionDigits: 0,
 })
 

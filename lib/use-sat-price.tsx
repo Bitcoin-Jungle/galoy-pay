@@ -40,7 +40,7 @@ const useSatPrice = () => {
 
   const conversions = React.useMemo(
     () => ({
-      satsToUsd: (sats: number) => (sats * priceRef.current) / 100,
+      satsToUsd: (sats: number) => Math.round((sats * priceRef.current) / 100),
       usdToSats: (usd: number) => (100 * usd) / priceRef.current,
     }),
     [],
