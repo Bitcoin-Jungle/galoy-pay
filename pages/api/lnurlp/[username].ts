@@ -1,14 +1,36 @@
 import crypto from "crypto"
 import originalUrl from "original-url"
-import { ApolloClient, gql, HttpLink, InMemoryCache } from "@apollo/client"
+import {
+  ApolloClient,
+  ApolloLink,
+  concat,
+  gql,
+  HttpLink,
+  InMemoryCache,
+} from "@apollo/client"
 import type { NextApiRequest, NextApiResponse } from "next"
 
-import { GRAPHQL_URI } from "../../../lib/config"
+import { GRAPHQL_URI_INTERNAL } from "../../../lib/config"
+
+const ipForwardingMiddleware = new ApolloLink((operation, forward) => {
+  operation.setContext(({ headers = {} }) => ({
+    headers: {
+      ...headers,
+      "x-real-ip": operation.getContext()["x-real-ip"],
+      "x-forwarded-for": operation.getContext()["x-forwarded-for"],
+    },
+  }))
+
+  return forward(operation)
+})
 
 const client = new ApolloClient({
-  link: new HttpLink({
-    uri: GRAPHQL_URI,
-  }),
+  link: concat(
+    ipForwardingMiddleware,
+    new HttpLink({
+      uri: GRAPHQL_URI_INTERNAL,
+    }),
+  ),
   cache: new InMemoryCache(),
 })
 
@@ -22,10 +44,14 @@ const LNURL_INVOICE = gql`
   mutation lnInvoiceCreateOnBehalfOfRecipient(
     $walletId: WalletId!
     $amount: SatAmount!
-    $h: Hex32Bytes!
+    $descriptionHash: Hex32Bytes!
   ) {
     mutationData: lnInvoiceCreateOnBehalfOfRecipient(
-      input: { recipientWalletId: $walletId, amount: $amount, descriptionHash: $h }
+      input: {
+        recipientWalletId: $walletId
+        amount: $amount
+        descriptionHash: $descriptionHash
+      }
     ) {
       errors {
         message
@@ -41,13 +67,20 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   const { username, amount } = req.query
   const url = originalUrl(req)
 
+  console.log({ headers: req.headers }, "request to NextApiRequest")
+
   let walletId
 
   try {
     const { data } = await client.query({
       query: USER_WALLET_ID,
       variables: { username },
+      context: {
+        "x-real-ip": req.headers["x-real-ip"],
+        "x-forwarded-for": req.headers["x-forwarded-for"],
+      },
     })
+
     walletId = data.userDefaultWalletId
   } catch (err) {
     return res.json({
@@ -86,7 +119,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         variables: {
           walletId,
           amount: amountSats,
-          h: descriptionHash,
+          descriptionHash,
         },
       })
 
