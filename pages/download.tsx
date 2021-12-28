@@ -35,6 +35,8 @@ function DownloadApp() {
           <a href={playStoreLink}>
             <Image src="/google-play-badge.png" rounded />
           </a>
+          <br />
+          <br />
         </Col>
         <Col>
           <div style={{ width: 200 }}>
@@ -42,6 +44,8 @@ function DownloadApp() {
               Download APK
               <br /> for Android
             </Button>
+            <br />
+            <br />
           </div>
         </Col>
       </Row>

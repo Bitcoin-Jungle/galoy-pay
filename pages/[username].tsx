@@ -10,7 +10,7 @@ import { gql, useQuery } from "@apollo/client"
 import ReceiveAmount from "../components/receive-amount"
 import ReceiveNoAmount from "../components/receive-no-amount"
 
-import { getOS, playStoreLink, appStoreLink } from "../lib/download"
+import { getOS, playStoreLink, appStoreLink, apkLink } from "../lib/download"
 
 const RECIPIENT_WALLET_ID = gql`
   query userDefaultWalletId($username: Username!) {
@@ -69,6 +69,12 @@ export default function Receive() {
                 <a href={playStoreLink}>
                   <Image src="/apple-app-store.png" height="40px" rounded />
                 </a>
+              )}
+              {os === "huawei" && (
+                <Button style={{ width: 150 }} href={apkLink} block variant="outline-dark">
+                  Download APK
+                  <br /> for Android
+                </Button>
               )}
               {os === undefined && (
                 <div>
