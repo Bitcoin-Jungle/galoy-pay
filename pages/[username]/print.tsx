@@ -46,7 +46,7 @@ export default function ({
   webURL: string
 }) {
   const componentRef = useRef<HTMLDivElement | null>(null)
-  const [qrType, setQR] = useState("web")
+  const [qrType, setQR] = useState("lnurl")
 
   return (
     <>
