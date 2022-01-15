@@ -66,6 +66,7 @@ const LNURL_INVOICE = gql`
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const { username, amount } = req.query
   const url = originalUrl(req)
+  const userAgent = req.headers['user-agent']
 
   console.log({ headers: req.headers }, "request to NextApiRequest")
 
@@ -108,6 +109,21 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
 
     try {
+      // LEE :: Hack this to prevent old builds from using LNURL, only for Bitcoin Jungle Builds < 303
+      if(userAgent && userAgent.indexOf('Bitcoin%20Jungle') != -1) {
+        const userAgentPieces = userAgent.split(' ')
+        const bitcoinJunglePiece = userAgentPieces[0]
+        const bitcoinJunglePieces = bitcoinJunglePiece.split('/')
+
+        if(bitcoinJunglePieces.length > 1) {
+          const buildNumber = parseInt(bitcoinJunglePieces[1])
+
+          if(buildNumber > 0 && buildNumber < 303) {
+            throw new Error("Please update your app version.")
+          }
+        }
+      }
+
       const descriptionHash = crypto.createHash("sha256").update(metadata).digest("hex")
 
       const {
