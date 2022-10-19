@@ -19,8 +19,8 @@ const GET_NODE_STATS = gql`
 function Home() {
   const nodeUrl =
     GRAPHQL_URI.indexOf("testnet") === -1
-      ? `https://1ml.com/node/`
-      : `https://1ml.com/testnet/node/`
+      ? `https://amboss.space/node/`
+      : `https://amboss.space/testnet/node/`
 
   const { loading, error, data } = useQuery(GET_NODE_STATS)
 
