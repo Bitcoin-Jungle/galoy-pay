@@ -10,7 +10,7 @@ import {
 } from "@apollo/client"
 import type { NextApiRequest, NextApiResponse } from "next"
 
-import { GRAPHQL_URI_INTERNAL } from "../../../lib/config"
+import { GRAPHQL_URI_INTERNAL, NOSTR_PUBKEY } from "../../../lib/config"
 
 const ipForwardingMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext(({ headers = {} }) => ({
@@ -41,17 +41,9 @@ const USER_WALLET_ID = gql`
 `
 
 const LNURL_INVOICE = gql`
-  mutation lnInvoiceCreateOnBehalfOfRecipient(
-    $walletId: WalletId!
-    $amount: SatAmount!
-    $descriptionHash: Hex32Bytes!
-  ) {
+  mutation lnInvoiceCreateOnBehalfOfRecipient($walletId: WalletId!, $amount: SatAmount!, $memo: Memo!) {
     mutationData: lnInvoiceCreateOnBehalfOfRecipient(
-      input: {
-        recipientWalletId: $walletId
-        amount: $amount
-        descriptionHash: $descriptionHash
-      }
+      input: { recipientWalletId: $walletId, amount: $amount, memo: $memo }
     ) {
       errors {
         message
@@ -64,7 +56,7 @@ const LNURL_INVOICE = gql`
 `
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  const { username, amount } = req.query
+  const { username, amount, nostr, comment } = req.query
   const url = originalUrl(req)
   const userAgent = req.headers['user-agent']
 
@@ -124,7 +116,15 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         }
       }
 
-      const descriptionHash = crypto.createHash("sha256").update(metadata).digest("hex")
+      let description = ""
+
+      if(nostr) {
+        // @ts-ignore
+        description = nostr
+      } else if(comment) {
+        // @ts-ignore
+        description = comment
+      }
 
       const {
         data: {
@@ -135,7 +135,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         variables: {
           walletId,
           amount: amountSats,
-          descriptionHash,
+          memo: description,
         },
       })
 
@@ -166,6 +166,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       maxSendable: 500000000,
       metadata: metadata,
       tag: "payRequest",
+      allowsNostr: true,
+      nostrPubkey: NOSTR_PUBKEY,
     })
   }
 }

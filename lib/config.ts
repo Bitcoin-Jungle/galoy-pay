@@ -5,6 +5,8 @@ let GRAPHQL_HOSTNAME = process.env.NEXT_PUBLIC_GRAPHQL_HOSTNAME as string
 // for example: "api.galoy-name-galoy.svc.cluster.local"
 const GRAPHQL_HOSTNAME_INTERNAL = process.env.GRAPHQL_HOSTNAME_INTERNAL as string
 
+const NOSTR_PUBKEY = process.env.NEXT_PUBLIC_NOSTR_PUBKEY as string
+
 // FIXME: remove once dns has been migrated out of ln.bitcoinbeach.com
 if (!GRAPHQL_HOSTNAME) {
   if (typeof window !== "undefined") {
@@ -24,4 +26,4 @@ const GRAPHQL_URI_INTERNAL = `http://${GRAPHQL_HOSTNAME_INTERNAL}/graphql`
 const GRAPHQL_URI = `https://${GRAPHQL_HOSTNAME}/graphql`
 const GRAPHQL_SUBSCRIPTION_URI = `wss://${GRAPHQL_HOSTNAME}/graphql`
 
-export { GRAPHQL_URI, GRAPHQL_SUBSCRIPTION_URI, GRAPHQL_URI_INTERNAL }
+export { GRAPHQL_URI, GRAPHQL_SUBSCRIPTION_URI, GRAPHQL_URI_INTERNAL, NOSTR_PUBKEY }
