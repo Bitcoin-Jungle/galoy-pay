@@ -119,17 +119,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       let description = ""
 
       if(nostr) {
-        try {
-          // @ts-ignore
-          const nostrObj = JSON.parse(nostr)
-          if(nostrObj && nostrObj.tags && nostrObj.tags[2] && nostrObj.tags[2][0] === 'relays') {
-            nostrObj.tags[2] = nostrObj.tags[2].slice(0, 3)
-          }
-          // @ts-ignore
-          nostr = JSON.stringify(nostr)
-        } catch(e) {
-          console.log(e)
-        }
         // @ts-ignore
         description = nostr
       } else if(comment) {
