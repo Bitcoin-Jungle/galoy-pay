@@ -56,8 +56,7 @@ const LNURL_INVOICE = gql`
 `
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  const { username, amount, comment } = req.query
-  let { nostr } = req.query
+  const { username, amount, nostr, comment } = req.query
   const url = originalUrl(req)
   const userAgent = req.headers['user-agent']
 
@@ -122,13 +121,12 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       if(nostr) {
         try {
           // @ts-ignore
-          let nostrObj = JSON.parse(nostr)
+          const nostrObj = JSON.parse(nostr)
           if(nostrObj && nostrObj.tags && nostrObj.tags[2] && nostrObj.tags[2][0] === 'relays') {
             nostrObj.tags[2] = nostrObj.tags[2].slice(0, 3)
           }
           // @ts-ignore
-          nostr = JSON.stringify(nostrObj)
-
+          nostr = JSON.stringify(nostr)
         } catch(e) {
           console.log(e)
         }
