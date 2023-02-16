@@ -153,6 +153,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         mutationVariables.descriptionHash = crypto.createHash("sha256").update(nostr).digest("hex")
       } else if(comment) {
         mutationVariables.memo = comment
+      } else {
+        mutationVariables.descriptionHash = crypto.createHash("sha256").update(metadata).digest("hex")
       }
 
       const {
