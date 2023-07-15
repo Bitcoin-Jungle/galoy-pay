@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useRouter } from "next/router"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
@@ -19,6 +20,7 @@ const RECIPIENT_WALLET_ID = gql`
 `
 
 export default function Receive() {
+  const [createInvoice, setCreateInvoice] = useState(false)
   const router = useRouter()
   const { username, amount } = router.query
 
@@ -50,14 +52,24 @@ export default function Receive() {
           <Card className="text-center">
             <Card.Header>Pay {username}</Card.Header>
 
-            {isAmountInvoice ? (
-              <ReceiveAmount recipientWalletId={recipientWalletId} />
-            ) : (
-              <ReceiveNoAmount
-                recipientWalletId={recipientWalletId}
-                onSetAmountClick={onSetAmountClick}
-              />
-            )}
+            {!createInvoice &&
+              <Button style={{ width: 150, margin: "10px auto" }} onClick={() => {setCreateInvoice(true)}}>
+                Create Invoice
+              </Button>
+            }
+
+            {createInvoice &&
+              <>
+                {isAmountInvoice ? (
+                  <ReceiveAmount recipientWalletId={recipientWalletId} />
+                ) : (
+                  <ReceiveNoAmount
+                    recipientWalletId={recipientWalletId}
+                    onSetAmountClick={onSetAmountClick}
+                  />
+                )}
+              </>
+            }
 
             <Card.Body>
               {os === "android" && (
@@ -88,6 +100,8 @@ export default function Receive() {
                 </div>
               )}
               <Button 
+                block 
+                variant="outline-dark"
                 style={{ marginTop: 10 }}
                 href={"/" + username + "/print"}
               >
