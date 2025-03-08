@@ -141,7 +141,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         }
       }
 
-      let mutationVariables: {[k: string]: any} = {
+      const mutationVariables: {[k: string]: any} = {
         walletId,
         amount: amountSats,
         descriptionHash: null,
